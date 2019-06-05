@@ -1,4 +1,5 @@
-Copyright Mathias Bynens <https://mathiasbynens.be/>
+Original work Copyright Mathias Bynens <https://mathiasbynens.be/>
+Modified work Copyright 2019 Salvatore Tipaldi
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
