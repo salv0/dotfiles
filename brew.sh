@@ -50,16 +50,16 @@ brew install gmp
 
 # Install asdf and general plugin dependencies
 brew install asdf
-brew install automake
 brew install autoconf
-brew install openssl
-brew install libyaml
-brew install readline
-brew install libxslt
+brew install automake
+brew install curl
 brew install libtool
+brew install libxslt
+brew install libyaml
+brew install openssl
+brew install readline
 brew install unixodbc
 brew install unzip
-brew install curl
 
 # Install other useful binaries.
 brew install git
