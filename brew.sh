@@ -75,5 +75,14 @@ brew install tree
 # Install csshx (Cluster ssh tool for Terminal.app)
 brew install csshx
 
+# Install cask apps/fonts/tools
+brew tap homebrew/cask-fonts
+
+brew cask install cakebrew
+brew cask install font-fira-code
+brew cask install google-chrome
+brew cask install slack
+brew cask install visual-studio-code
+
 # Remove outdated versions from the cellar.
 brew cleanup
