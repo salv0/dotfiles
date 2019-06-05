@@ -48,15 +48,32 @@ brew install screen
 brew install php
 brew install gmp
 
+# Install asdf and general plugin dependencies
+brew install asdf
+brew install automake
+brew install autoconf
+brew install openssl
+brew install libyaml
+brew install readline
+brew install libxslt
+brew install libtool
+brew install unixodbc
+brew install unzip
+brew install curl
+
 # Install other useful binaries.
 brew install git
 brew install git-lfs
+brew install httpie
 brew install lua
 brew install pigz
 brew install pv
 brew install rename
 brew install ssh-copy-id
 brew install tree
+
+# Install csshx (Cluster ssh tool for Terminal.app)
+brew install csshx
 
 # Remove outdated versions from the cellar.
 brew cleanup
