@@ -1,35 +1,52 @@
 #!/usr/bin/env bash
 
+source ./lib-sh/lib-utils.sh
+
+###############################################################################
+# Install brew dependencies and other non brew tools                          #
+###############################################################################
+bot "Ensuring build/install tools are available"
+xcode-select --install 2>&1 > /dev/null
+sudo xcode-select -s /Applications/Xcode.app/Contents/Developer 2>&1 > /dev/null
+sudo xcodebuild -license accept 2>&1 > /dev/null
+ok
+
 # Install homebrew
-# /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+bot "Now installing homebrew"
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+ok
 
 ###############################################################################
-# Install command-line tools using Homebrew.																	#
+# Install tools/apps/fonts using Homebrew.																	  #
 ###############################################################################
 
+bot "Updating homebrew and any already-installed formulae"
 # Make sure we’re using the latest Homebrew.
 brew update
 
 # Upgrade any already-installed formulae.
 brew upgrade
+ok
 
 # Save Homebrew’s installed location.
 BREW_PREFIX=$(brew --prefix)
 
+bot "Installing brew utilities etc.."
+
 # Install GNU core utilities (those that come with macOS are outdated).
 # Don’t forget to add `$(brew --prefix coreutils)/libexec/gnubin` to `$PATH`.
-brew install coreutils
+brew_install coreutils
 ln -s "${BREW_PREFIX}/bin/gsha256sum" "${BREW_PREFIX}/bin/sha256sum"
 
 # Install some other useful utilities like `sponge`.
-brew install moreutils
+brew_install moreutils
 # Install GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed.
-brew install findutils
+brew_install findutils
 # Install GNU `sed`, overwriting the built-in `sed`.
-brew install gnu-sed --with-default-names
+brew_install gnu-sed --with-default-names
 # Install Bash 4.
-brew install bash
-brew install bash-completion2
+brew_install bash
+brew_install bash-completion2
 
 # Switch to using brew-installed bash as default shell
 if ! fgrep -q "${BREW_PREFIX}/bin/bash" /etc/shells; then
@@ -38,51 +55,54 @@ if ! fgrep -q "${BREW_PREFIX}/bin/bash" /etc/shells; then
 fi;
 
 # Install `wget` with IRI support.
-brew install wget --with-iri
+brew_install wget --with-iri
 
 # Install more recent versions of some macOS tools.
-brew install vim --with-override-system-vi
-brew install grep
-brew install openssh
-brew install screen
-brew install php
-brew install gmp
+brew_install vim --with-override-system-vi
+brew_install grep
+brew_install openssh
+brew_install screen
+brew_install php
+brew_install gmp
+brew_install zsh
 
 # Install asdf and general plugin dependencies
-brew install asdf
-brew install autoconf
-brew install automake
-brew install curl
-brew install libtool
-brew install libxslt
-brew install libyaml
-brew install openssl
-brew install readline
-brew install unixodbc
-brew install unzip
+brew_install asdf
+brew_install autoconf
+brew_install automake
+brew_install curl
+brew_install libtool
+brew_install libxslt
+brew_install libyaml
+brew_install openssl
+brew_install readline
+brew_install unixodbc
+brew_install unzip
 
 # Install other useful binaries.
-brew install git
-brew install git-lfs
-brew install httpie
-brew install lua
-brew install pigz
-brew install pv
-brew install rename
-brew install ssh-copy-id
-brew install tree
+brew_install git
+brew_install git-lfs
+brew_install httpie
+brew_install lua
+brew_install pigz
+brew_install pv
+brew_install rename
+brew_install ssh-copy-id
+brew_install tree
 
 # Install csshx (Cluster ssh tool for Terminal.app)
-brew install csshx
+brew_install csshx
 
 # Install cask apps/fonts/tools
 brew tap homebrew/cask-fonts
 
-brew cask install cakebrew
-brew cask install font-fira-code
-brew cask install google-chrome
-brew cask install slack
-brew cask install visual-studio-code
+brew_cask_install cakebrew
+brew_cask_install font-fira-code
+brew_cask_install google-chrome
+brew_cask_install slack
+brew_cask_install visual-studio-code
 
 # Remove outdated versions from the cellar.
 brew cleanup
+
+bot "All done!"
