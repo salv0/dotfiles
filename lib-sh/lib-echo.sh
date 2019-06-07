@@ -2,7 +2,7 @@
 
 ###
 # some colorized echo helpers
-# @author Adam Eivy
+# based on Adam Eivy's
 ###
 
 # Colors
@@ -19,12 +19,12 @@ function ok() {
     echo -e "$COL_GREEN[ok]$COL_RESET "$1
 }
 
-function bot() {
-    echo -e "\n$COL_GREEN\[._.]/$COL_RESET - "$1
+function info() {
+    echo -e "\n$COL_BLUE[INFO]$COL_RESET - "$1
 }
 
 function running() {
-    echo -en "$COL_YELLOW ⇒ $COL_RESET"$1": "
+    echo -en "$COL_CYAN ⇒ $COL_RESET"$1": "
 }
 
 function action() {

@@ -5,22 +5,27 @@ source ./lib-sh/lib-utils.sh
 ###############################################################################
 # Install brew dependencies and other non brew tools                          #
 ###############################################################################
-bot "Ensuring build/install tools are available"
+info "Ensuring build/install tools are available"
 xcode-select --install 2>&1 > /dev/null
 sudo xcode-select -s /Applications/Xcode.app/Contents/Developer 2>&1 > /dev/null
 sudo xcodebuild -license accept 2>&1 > /dev/null
 ok
 
 # Install homebrew
-bot "Now installing homebrew"
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-ok
+info "Checking if homebrew is already installed.."
+if [[ $(command -v brew) == "" ]]; then
+  running "Installing homebrew.."
+  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+	ok
+else
+	ok "Homebrew already installed"
+fi
 
 ###############################################################################
 # Install tools/apps/fonts using Homebrew.																	  #
 ###############################################################################
 
-bot "Updating homebrew and any already-installed formulae"
+info "Updating homebrew and any already-installed formulae"
 # Make sure we’re using the latest Homebrew.
 brew update
 
@@ -31,7 +36,7 @@ ok
 # Save Homebrew’s installed location.
 BREW_PREFIX=$(brew --prefix)
 
-bot "Installing brew utilities etc.."
+info "Installing brew utilities etc.."
 
 # Install GNU core utilities (those that come with macOS are outdated).
 # Don’t forget to add `$(brew --prefix coreutils)/libexec/gnubin` to `$PATH`.
@@ -102,4 +107,4 @@ brew_cask_install visual-studio-code
 # Remove outdated versions from the cellar.
 brew cleanup
 
-bot "All done!"
+info "All done!"
