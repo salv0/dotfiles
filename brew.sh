@@ -54,17 +54,14 @@ if ! fgrep -q "${BREW_PREFIX}/bin/bash" /etc/shells; then
   chsh -s "${BREW_PREFIX}/bin/bash";
 fi;
 
-# Install `wget` with IRI support.
-brew_install wget --with-iri
-
 # Install more recent versions of some macOS tools.
-brew_install vim --with-override-system-vi
+brew_install vim
 brew_install grep
 brew_install openssh
 brew_install screen
 brew_install php
 brew_install gmp
-brew_install zsh
+brew_install wget
 
 # Install asdf and general plugin dependencies
 brew_install asdf
