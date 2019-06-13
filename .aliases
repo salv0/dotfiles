@@ -147,3 +147,6 @@ alias reload="exec ${SHELL} -l"
 
 # Print each PATH entry on a separate line
 alias path='echo -e ${PATH//:/\\n}'
+
+# Print list of globally installed packages
+alias npmgl='npm list -g --depth 0'
