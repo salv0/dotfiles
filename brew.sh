@@ -49,7 +49,7 @@ brew_install moreutils
 brew_install findutils
 # Install GNU `sed`, overwriting the built-in `sed`.
 brew_install gnu-sed --with-default-names
-# Install Bash 4.
+# Install a modern version of Bash.
 brew_install bash
 brew_install bash-completion2
 
